@@ -1,4 +1,5 @@
 from sklearn.svm import LinearSVC
+from sklearn.metrics import accuracy_score
 
 # features [1 sim, 0 nao]
 # pelo longo
@@ -35,8 +36,12 @@ previsoes = modelo.predict(testes) # prevendo o animal
 teste_classes = [0, 1, 1]
 
 # ======================= acuracia ============================
-corretos = (previsoes == teste_classes).sum()
-total = len(testes)
-texa_de_acertos = corretos / total * 100
+# corretos = (previsoes == teste_classes).sum()
+# total = len(testes)
+# texa_de_acertos = corretos / total * 100
+# =========================================================
 
-print(f"acuaracia: {texa_de_acertos:.2f}%")
+# a biblitoeca sklearn ja facilita para nos fazermos a acuracia por meio de:
+taxa_de_acertos = accuracy_score(teste_classes, previsoes) * 100
+
+print(f"acuaracia: {taxa_de_acertos:.2f}%")

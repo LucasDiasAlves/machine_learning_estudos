@@ -16,3 +16,8 @@ O LinearSVC analisa esses dados e tenta encontrar a melhor linha (ou hiperplano,
 
 ### Classificação de Novos Dados: 
 Uma vez que o modelo foi treinado e encontrou a linha de separação, ele pode ser usado para classificar novos dados. Se um novo exemplo cair de um lado da linha, será classificado como porco; se cair do outro lado, será classificado como cachorro.
+
+---
+## Anotações
+em nosso codigo usamos os dados de treino, e chamamos de **dados**, por boa pratica chamamos de **treino_x** ou **treino_y**, pode ser variavel, mas é mehor chamar de treino.
+e para **teste** adotamos a mesma abordagem, para chamarmos de **teste_x** ou **teste_y**
