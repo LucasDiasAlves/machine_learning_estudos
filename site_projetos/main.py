@@ -33,6 +33,6 @@ def treino(x, y):
     print("\nDistribuição das classes no teste:")
     print(teste_y.value_counts())
 
-treino(dados[["horas_esperadas", "preco"]], dados["finalizados"])
+# treino(dados[["horas_esperadas", "preco"]], dados["finalizados"])
 
-# print(dados.head())
+print(dados['preco'].value_counts())
