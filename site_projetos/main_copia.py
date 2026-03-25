@@ -47,4 +47,16 @@ y_max = teste_x["preco"].max()
 pixels = 100
 
 eixo_x = np.arange(x_min, x_max, (x_max - x_min) / pixels)
-print(eixo_x)
+eixo_y = np.arange(y_min, y_max, (y_max - y_min) / pixels)
+xx, yy = np.meshgrid(eixo_x, eixo_y)
+
+pontos = np.c_[xx.ravel(), yy.ravel()]
+
+z = modelo.predict(pontos)
+z = z.reshape(xx.shape)
+
+plt.contourf(xx,yy,z)
+plt.scatter(teste_x["horas_esperadas"], teste_x["preco"], c=teste_y, alpha=0.8, s=1)
+plt.show()
+
+print(z)
