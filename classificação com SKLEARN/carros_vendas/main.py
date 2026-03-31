@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.dummy import DummyClassifier
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
+import graphviz
 
 # --------------------------------------------------------------------------------------------
 # -------------------------------------- TRATANDO OS DADOS------------------------------------
@@ -21,39 +23,49 @@ dados["idade"] = datetime.today().year - dados["ano_do_modelo"]
 dados.drop(["milhas_por_ano","ano_do_modelo"], axis=1 , inplace=True)
 # ------------------------------------------------------------------------------------------------------
 
+def treino(x,y):
+    semente = 5719
+    
+    raw_treino_x, raw_teste_x, treino_y, teste_y = train_test_split(x,y, random_state = semente) 
+
+    scaler = StandardScaler()
+    scaler.fit(raw_treino_x)
+
+    treino_x = scaler.transform(raw_treino_x)
+    teste_x = scaler.transform(raw_teste_x)
+
+    # classificador = DummyClassifier()
+    # classificador.fit(raw_treino_x, treino_y)
+    # previsoes = classificador.predict(raw_teste_x)
+
+    # classificador = DummyClassifier(strategy='stratified')
+    # classificador.fit(raw_treino_x, treino_y)
+    # previsoes = classificador.predict(raw_teste_x)
+
+    # modelo = SVC(gamma='auto')
+    # modelo.fit(treino_x,treino_y)
+    # previsoes = modelo.predict(teste_x)
+    
+    modelo = DecisionTreeClassifier()
+    modelo.fit(treino_x,treino_y)
+    previsoes = modelo.predict(teste_x)
+    
+    acuracia = accuracy_score(teste_y, previsoes) * 100
+
+    print(f"A acurácia é de {acuracia:.2f}%\n")    
+    print("Distribuição das classes no treino:")
+    print(treino_y.value_counts())
+    print("\nDistribuição das classes no teste:")
+    print(teste_y.value_counts())
 
 
+    # sns.relplot(x="km_por_ano", y="preco", data=dados, hue="vendido", col="vendido")
+    # plt.show()
 
-semente = 5719
-
-x = dados[['preco','idade','km_por_ano']]
-y = dados['vendido']
-
-raw_treino_x, raw_teste_x, treino_y, teste_y = train_test_split(x,y, random_state = semente) 
-
-scaler = StandardScaler()
-scaler.fit(raw_treino_x)
-
-# treino_x = scaler.transform(raw_treino_x)
-# teste_x = scaler.transform(raw_teste_x)
-
-classificador = DummyClassifier()
-classificador.fit(raw_treino_x, treino_y)
-previsoes = classificador.predict(raw_teste_x)
-
-# modelo = SVC(gamma='auto')
-# modelo.fit(treino_x,treino_y)
-# previsoes = modelo.predict(teste_x)
-acuracia = accuracy_score(teste_y, previsoes) * 100
-
-print(f"A acurácia é de {acuracia:.2f}%\n")    
-print("Distribuição das classes no treino:")
-print(treino_y.value_counts())
-print("\nDistribuição das classes no teste:")
-print(teste_y.value_counts())
-
-
-sns.relplot(x="km_por_ano", y="preco", data=dados, hue="vendido", col="vendido")
-plt.show()
-
-print(dados.columns)
+    # print(dados.columns)
+    estrutura = export_graphviz(modelo, filled=True, rounded=True, feature_names=x.columns)
+    grafico = graphviz.Source(estrutura)
+    return grafico
+#não ira plotar grafico nenhum, pois não tenho instalado em meu pc, apenas o PIP install não basta para instalação, precisa ir no site deeles 
+    
+treino(x = dados[['preco','idade','km_por_ano']], y = dados['vendido'])
