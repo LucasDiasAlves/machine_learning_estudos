@@ -19,5 +19,9 @@ df_train['preco_de_venda'] = y_train
 
 modelo_0 = ols('preco_de_venda ~ area_primeiro_andar', data = df_train).fit()
 
+print(modelo_0.params)
+print(modelo_0.summary())
+print(modelo_0.rsquared)
+
 print(corr['preco_de_venda'])
 print(dados.columns)
