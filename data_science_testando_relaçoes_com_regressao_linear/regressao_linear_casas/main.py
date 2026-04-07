@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split 
 from statsmodels.formula.api import ols
+import matplotlib as plt
 
 base_dados = './data_science_testando_relaçoes_com_regressao_linear/regressao_linear_casas/Preços_de_casas.csv'
 
@@ -22,6 +23,13 @@ modelo_0 = ols('preco_de_venda ~ area_primeiro_andar', data = df_train).fit()
 print(modelo_0.params)
 print(modelo_0.summary())
 print(modelo_0.rsquared)
+
+print(modelo_0.resid)
+print(modelo_0.resid.hist())
+plt.tittle("Distribuiçãp dos residuos")
+plt.show()
+
+
 
 print(corr['preco_de_venda'])
 print(dados.columns)
