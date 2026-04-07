@@ -10,5 +10,3 @@ nela contamos com algortimos de:
 - itens_loja, previsão para ver se vai comprar algo ou não, (**Linaer_SVC**)
 - site_projetos, para prever se um projeto ira ser fechado, abseado em horas e valor (**LinearSVC / SVC**)
 - carros_vendas, prevendo se um carro sera vendido sim ou não,(**DummyClassifier**)
-
-teste
