@@ -13,7 +13,7 @@ dados = dados.drop(columns='Id') #retirando a coluna ID pois não é eficiente p
 corr = dados.corr()
 
 y = dados['preco_de_venda']
-x = dados.drop(['preco_de_venda'])
+x = dados.drop(columns='preco_de_venda')
 
 x_train, x_test, y_train, y_test = train_test_split(x,y , test_size = 0.4 , random_state = 230)
 
@@ -23,7 +23,7 @@ df_train['preco_de_venda'] = y_train
 modelo_0 = ols('preco_de_venda ~ area_primeiro_andar', data = df_train).fit()
 
 
-x_train = sm.add_constant()
+x_train = sm.add_constant(x_train)
 print(x_train.head)
 
 modelo_1 = sm.OLS(y_train, x_train[['const','existe_segundo_andar','area_segundo_andar','quantidade_banheiros','capacidade_carros_garagem','qualidade_da_cozinha_Excelente']]).fit
