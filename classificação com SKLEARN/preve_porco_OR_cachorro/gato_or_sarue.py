@@ -54,7 +54,7 @@ previsoes = modelo.predict([resultado])
 
 if previsoes == 1:
     print("O animal o qual me forneceu informações é um FELINO 🐈‍⬛🐈😺😸😹😼🐱😻😾😿🙀😽")
-    caminho = 'preve_porco_OR_cachorro/gato.jpg'
+    caminho = 'classificação com SKLEARN/preve_porco_OR_cachorro/gato.jpg'
 elif previsoes == 0:
     print("O animal o qual me forneceu informações é um SARUÉ 🦨🦨🦨🦨🦨🦨🦨🦨")
     caminho = 'preve_porco_OR_cachorro/sarue.jpg'
