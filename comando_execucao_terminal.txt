@@ -1,1 +1,1 @@
- docker run -it --rm -v $(pwd):/app maquina-de-ml python "./data_science_testando_relaçoes_com_regressao_linear/regressao_linear_casas/main.py"
+docker run -it --rm -v $(pwd):/app maquina-de-ml python "./data_science_testando_relaçoes_com_regressao_linear/regressao_linear_casas/main.py"

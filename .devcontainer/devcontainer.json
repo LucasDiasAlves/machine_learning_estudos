@@ -1,0 +1,16 @@
+{
+  "name": "estudo machine learning",
+  "build": {
+    "context": "..",
+    "dockerfile": "../dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
