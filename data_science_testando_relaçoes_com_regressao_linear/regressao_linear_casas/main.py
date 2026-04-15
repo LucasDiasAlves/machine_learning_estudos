@@ -3,7 +3,8 @@ from sklearn.model_selection import train_test_split
 from statsmodels.formula.api import ols
 from sklearn.metrics import r2_score
 import statsmodels.api as sm
-import matplotlib as plt
+import pickle
+
 
 base_dados = './data_science_testando_relaçoes_com_regressao_linear/regressao_linear_casas/Preços_de_casas.csv'
 dados = pd.read_csv(base_dados)
@@ -65,3 +66,11 @@ previsao_3 = modelo_3.predict(novo_imovel)[0]
 
 print(previsao_0)
 print(previsao_3)
+
+nome_arquivo = 'modelo_3.pkl'
+
+with open(nome_arquivo, 'wb') as arquivo:
+    pickle.dump(modelo_3, arquivo) #para podermos salvar um modelo treinado
+    
+with open(nome_arquivo, 'rb') as arquivo:
+    modelo_carregado = pickle.load(arquivo) #para carregar o modelo treinado
