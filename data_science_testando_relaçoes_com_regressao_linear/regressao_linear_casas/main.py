@@ -46,8 +46,22 @@ modelo_3 = sm.OLS(y_train, x_train[['const','area_primeiro_andar','existe_segund
 # print(len(modelo_0.params)) # retorna o numero de parametros do modelo
 # print(len(modelo_1.params))
 # print(len(modelo_2.params))
-print(len(modelo_3.params))
-print(modelo_3.params)
+# print(len(modelo_3.params))
+# print(modelo_3.params)
 
 # print(corr['preco_de_venda'])
 # print(dados.columns)
+
+novo_imovel = pd.DataFrame({'const':[1],
+                            'area_primeiro_andar':[98],
+                            'existe_segundo_andar': [0],
+                            'quantidade_banheiros': [1],
+                            'qualidade_da_cozinha_Excelente': [1]
+                            })
+
+previsao_0 = modelo_0.predict(novo_imovel['area_primeiro_andar'])
+previsao_3 = modelo_3.predict(novo_imovel)[0]
+
+
+print(previsao_0)
+print(previsao_3)
